@@ -3,3 +3,6 @@
 out
 target
 .idea/
+bsp.log
+.bsp
+random.txt

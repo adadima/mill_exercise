@@ -37,6 +37,24 @@ object random extends SbtModule {
   )
 
   def scalaVersion = "2.12.8"
+  def forkArgs = Seq("-DMILL_VERSION=0.5.0")
 
-  def ivyDeps = Agg(ivy"ch.epfl.scala:bsp4j:2.0.0-M3")
+  def ivyDeps = Agg(ivy"ch.epfl.scala:bsp4j:2.0.0-M3",
+                    ivy"com.lihaoyi::os-lib:0.3.0")
+
+  object test extends Tests {
+    def testFrameworks = Seq("org.scalatest.tools.Framework")
+    def ivyDeps = Agg(ivy"org.scalatest::scalatest:3.0.4",
+                      ivy"org.scalactic::scalactic:3.0.5")
+  }
+}
+
+object foo extends ScalaModule {
+  def scalaVersion = "2.12.8"
+
+  object test extends Tests {
+    def testFrameworks = Seq("org.scalatest.tools.Framework")
+    def ivyDeps = Agg(ivy"org.scalatest::scalatest:3.0.4",
+                      ivy"org.scalactic::scalactic:3.0.5")
+  }
 }

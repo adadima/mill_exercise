@@ -19,11 +19,18 @@ class C extends B {
 }
 
 
-class RandomClass {
-  val a = new A {
-    override def methodA: Unit = ???
-  }
-  val b = a match {
-    case value: B => None
+object RandomClass {
+
+  def main(args: Array[String]): Unit = {
+    if (os.exists(os.pwd / "random.txt")) {
+      os.remove(os.pwd / "random.txt")
+    }
+    if ( args.length == 0 ) {
+      os.write(os.pwd / "random.txt", "\n")
+    } else if ( args.length == 1 ) {
+      throw new RuntimeException("random runtime exception")
+    } else {
+      os.write(os.pwd / "random.txt", args.mkString("\n"))
+    }
   }
 }
